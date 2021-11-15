@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
       <div>
         <h1>
-          star platinum, the world!
+          star platinum, the world
         </h1>
       </div>
     </div>
