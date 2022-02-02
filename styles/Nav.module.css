@@ -1,0 +1,27 @@
+.nav {
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+.navitems {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* margin-left: 3rem; */
+}
+
+.navitems ul{
+  display: flex;
+  list-style: none;
+  justify-self: center;
+  align-items: center;
+}
+
+.navitems ul li {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+.inputSection{
+  margin-right: 3rem;
+}
