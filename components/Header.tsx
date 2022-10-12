@@ -19,11 +19,11 @@ const Header: NextPage<Props> = () => {
           </Link>
         </div>
         <div className="hidden md:inline-flex items-center space-x-5">
-          <Link href="/category">
+          {/* <Link href="/category">
             <h3 className="cursor-pointer font-semibold text-neutral-700">
               Category
             </h3>
-          </Link>
+          </Link> */}
           <Link href="/about">
             <h3 className="cursor-pointer font-semibold text-neutral-700">
               About
@@ -43,11 +43,11 @@ const Header: NextPage<Props> = () => {
               <BiX className="fixed top-5 right-5" size={25} />
             </div>
             <div className="relative top-10 space-y-5">
-              <Link href="/category">
+              {/* <Link href="/category">
                 <h4 className="text-xl text-gray-700 font-semibold cursor-pointer">
                   category
                 </h4>
-              </Link>
+              </Link> */}
               <Link href="/about">
                 <h4 className="text-xl text-gray-700 font-semibold cursor-pointer">
                   about
