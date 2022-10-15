@@ -25,7 +25,7 @@ const Posts: NextPage<Props> = ({ post }) => {
           </div>
         </Link>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between m-2">
           <div className="space-x-2">
             {post.categories.map((catogery) => (
               <span

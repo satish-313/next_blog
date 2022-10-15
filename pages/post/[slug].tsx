@@ -1,14 +1,18 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { allSlug, PostDetail } from "../../service";
 import { Post } from "../../typings";
+import { Loading } from "../../components";
 
 interface Props {
   post: Post;
 }
 
 const Post: NextPage<Props> = ({ post }) => {
+  const router = useRouter();
+
   const getContentFragment = (index: any, text: any, obj: any, type: any) => {
     let modifiedText = text;
     // console.log("modifiedText", modifiedText, ": obj", obj);
@@ -110,6 +114,22 @@ const Post: NextPage<Props> = ({ post }) => {
             ))}
           </h4>
         );
+      case "heading-five":
+        return (
+          <h5 key={index} className="text-md font-semibold mb-4">
+            {modifiedText.map((item: any, i:number) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
+          </h5>
+        )
+      case "heading-six":
+        return (
+          <h6 key={index} className="text-md font-semibold mb-4">
+            {modifiedText.map((item: any, i:number) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
+          </h6>
+        )
       case "image":
         return (
           <img
@@ -125,8 +145,12 @@ const Post: NextPage<Props> = ({ post }) => {
     }
   };
 
+  if (router.isFallback) {
+    return <Loading />;
+  }
+
   return (
-    <div className="max-w-5xl mx-auto my-5 px-2">
+    <div className="max-w-5xl mx-auto my-5 px-5">
       <Head>
         <title>{post.title}</title>
         <link rel="icon" href="/logo_photo.jpg" />
@@ -144,6 +168,9 @@ const Post: NextPage<Props> = ({ post }) => {
       </div>
       <div>
         <h3 className="font-semibold text-2xl mb-2">{post.title}</h3>
+        <div className="w-2/3 h-2/3 m-3 mx-auto">
+          <img src={post.coverImage.url} alt="image" />
+        </div>
         {post.content.raw.children.map((typeObj: any, index: any) => {
           const children = typeObj.children.map((item: any, itemIndex: any) =>
             getContentFragment(itemIndex, item.text, item, undefined)
@@ -178,6 +205,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { post },
-    revalidate: 60 * 60 * 24 * 5,
+    revalidate: 60 * 60 * 24 * 7,
   };
 };
