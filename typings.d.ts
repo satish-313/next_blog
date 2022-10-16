@@ -39,4 +39,8 @@ export interface Category {
   categoryName: string;
   slug: string;
   id: string;
+  description: string;
+  coverImage: {
+    url: string;
+  };
 }

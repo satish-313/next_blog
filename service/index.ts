@@ -55,7 +55,7 @@ export const PostDetail = async (slug: string) => {
         excerpt
         slug
         createdAt
-        content{
+        content {
           raw
         }
         coverImage {
@@ -87,9 +87,44 @@ export const getCategories = async () => {
         categoryName
         slug
         id
+        description
+        coverImage {
+          url
+        }
       }
     }
   `;
   const { categories } = await request(api_endpoint, query);
   return categories;
+};
+
+export const getPostsBasedOnCategory = async (slug: string) => {
+  const query = gql`
+    query getPostBasedOnCategory($slug: String!) {
+      posts(where: { categories_some: { slug: $slug } }) {
+        id
+        title
+        excerpt
+        slug
+        createdAt
+        coverImage {
+          url
+        }
+        author {
+          name
+          picture {
+            url
+          }
+        }
+        categories {
+          categoryName
+          slug
+          id
+        }
+      }
+    }
+  `;
+
+  const { posts } = await request(api_endpoint, query, { slug });
+  return posts;
 };

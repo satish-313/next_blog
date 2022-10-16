@@ -100,7 +100,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "paragraph":
         return (
-          <p key={index} className="mb-4 tracking-wide leading-6">
+          <p key={index} className="mb-4 text-lg tracking-wide leading-6">
             {modifiedText.map((item: any, i: any) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -117,19 +117,19 @@ const Post: NextPage<Props> = ({ post }) => {
       case "heading-five":
         return (
           <h5 key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item: any, i:number) => (
+            {modifiedText.map((item: any, i: number) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
           </h5>
-        )
+        );
       case "heading-six":
         return (
           <h6 key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item: any, i:number) => (
+            {modifiedText.map((item: any, i: number) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
           </h6>
-        )
+        );
       case "image":
         return (
           <img
@@ -150,7 +150,7 @@ const Post: NextPage<Props> = ({ post }) => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto my-5 px-5">
+    <div className="max-w-4xl mx-auto my-5 px-5">
       <Head>
         <title>{post.title}</title>
         <link rel="icon" href="/logo_photo.jpg" />
@@ -163,10 +163,13 @@ const Post: NextPage<Props> = ({ post }) => {
         />
         <div className="flex flex-col">
           <span>{post.author.name}</span>
-          <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+          <p>
+            published -{" "}
+            <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+          </p>
         </div>
       </div>
-      <div>
+      <div className="mb-20">
         <h3 className="font-semibold text-2xl mb-2">{post.title}</h3>
         <div className="w-2/3 h-2/3 m-3 mx-auto">
           <img src={post.coverImage.url} alt="image" />

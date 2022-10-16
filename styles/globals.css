@@ -30,7 +30,11 @@ a {
 pre {
   padding: 1rem;
   background-color: aqua;
-  font-size: 1.5rem;
   border-radius: 1rem;
+  overflow-x: scroll;
+}
+ 
+pre code {
+  font-size: 1rem;
 }
 

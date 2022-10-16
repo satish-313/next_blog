@@ -24,24 +24,25 @@ const Posts: NextPage<Props> = ({ post }) => {
             <p className="hidden md:block text-gray-500">{post.excerpt}</p>
           </div>
         </Link>
-
         <div className="flex justify-between m-2">
           <div className="space-x-2">
-            {post.categories.map((catogery) => (
-              <span
-                key={catogery.slug}
-                className="border-2 p-1 hover:bg-yellow-200 rounded-lg cursor-pointer"
+            {post.categories.map((category) => (
+              <Link
+                key={category.slug}
+                href={{ pathname: `/tag/${category.slug}` }}
               >
-                {catogery.categoryName}
-              </span>
+                <span className="border-2 p-1 hover:bg-yellow-200 rounded-lg cursor-pointer">
+                  {category.categoryName}
+                </span>
+              </Link>
             ))}
           </div>
-          <span>oct 8 2022</span>
+          <span>{new Date(post.createdAt).toLocaleDateString()}</span>
         </div>
       </div>
-      <div className="col-span-1 my-auto">
+      <div className="col-span-1 sm:w-24 sm:h-24 md:w-36 md:h-36 self-center justify-self-center">
         <img
-          className="w-full rounded-xl"
+          className="w-full h-full object-cover rounded-xl"
           src={post.coverImage.url}
           alt="image"
         />
