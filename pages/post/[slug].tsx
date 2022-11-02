@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { allSlug, PostDetail } from "../../service";
 import { Post } from "../../typings";
 import { Loading } from "../../components";
+import moment from "moment";
 
 interface Props {
   post: Post;
@@ -66,7 +67,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "bulleted-list":
         return (
-          <ul className="list-disc mb-5 ml-5 -mt-3" key={index}>
+          <ul className="list-disc mb-5 ml-5 -mt-3 text-md font-medium" key={index}>
             {modifiedText.map((item: any, i: any) => (
               <li key={i}>{item}</li>
             ))}
@@ -100,7 +101,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "paragraph":
         return (
-          <p key={index} className="mb-4 text-lg tracking-wide leading-6">
+          <p key={index} className="mb-4 text-lg font-medium tracking-wide leading-6">
             {modifiedText.map((item: any, i: any) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -108,7 +109,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-four":
         return (
-          <h4 key={index} className="text-md font-semibold mb-4">
+          <h4 key={index} className="text-2xl font-semibold mb-4">
             {modifiedText.map((item: any, i: any) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -116,7 +117,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-five":
         return (
-          <h5 key={index} className="text-md font-semibold mb-4">
+          <h5 key={index} className="text-md text-2xl font-semibold mb-4">
             {modifiedText.map((item: any, i: number) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -124,7 +125,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-six":
         return (
-          <h6 key={index} className="text-md font-semibold mb-4">
+          <h6 key={index} className="text-md text-xl font-semibold mb-4">
             {modifiedText.map((item: any, i: number) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -133,6 +134,7 @@ const Post: NextPage<Props> = ({ post }) => {
       case "image":
         return (
           <img
+            className="mb-5"
             key={index}
             alt={obj.title}
             height={obj.height}
@@ -157,20 +159,20 @@ const Post: NextPage<Props> = ({ post }) => {
       </Head>
       <div className="flex items-center space-x-4 my-2">
         <img
-          className="w-20 h-20 rounded-full"
+          className="w-10 h-10 md:w-20 md:h-20 rounded-full"
           src={post.author.picture.url}
           alt={post.author.name}
         />
         <div className="flex flex-col">
           <span>{post.author.name}</span>
-          <p>
+          <p className="text-xs text-gray-600">
             published -{" "}
-            <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+            <span>{moment(post.createdAt).format("MMM Do YY")}</span>
           </p>
         </div>
       </div>
       <div className="mb-20">
-        <h3 className="font-semibold text-2xl mb-2">{post.title}</h3>
+        <h3 className="font-bold text-3xl mb-2">{post.title}</h3>
         <div className="w-2/3 h-2/3 m-3 mx-auto">
           <img src={post.coverImage.url} alt="image" />
         </div>
@@ -208,6 +210,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { post },
-    revalidate: 60 * 60 * 24 * 7,
+    revalidate: 60 * 60 * 24,
   };
 };

@@ -5,7 +5,7 @@ const api_endpoint = process.env.NEXT_PUBLIC_HYGRAPH_API as string;
 export const getRecentPost = async () => {
   const query = gql`
     query getRecentPost {
-      posts {
+      posts(orderBy: createdAt_DESC, first: 10) {
         id
         title
         excerpt
@@ -101,7 +101,11 @@ export const getCategories = async () => {
 export const getPostsBasedOnCategory = async (slug: string) => {
   const query = gql`
     query getPostBasedOnCategory($slug: String!) {
-      posts(where: { categories_some: { slug: $slug } }) {
+      posts(
+        orderBy: createdAt_DESC
+        first: 10
+        where: { categories_some: { slug: $slug } }
+      ) {
         id
         title
         excerpt
