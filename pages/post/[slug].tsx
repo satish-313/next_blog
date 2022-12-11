@@ -16,7 +16,6 @@ const Post: NextPage<Props> = ({ post }) => {
 
   const getContentFragment = (index: any, text: any, obj: any, type: any) => {
     let modifiedText = text;
-    // console.log("modifiedText", modifiedText, ": obj", obj);
 
     if (obj) {
       if (obj.bold) {
@@ -59,7 +58,7 @@ const Post: NextPage<Props> = ({ post }) => {
     switch (type) {
       case "numbered-list":
         return (
-          <ol className="mb-5 list-decimal ml-5 -mt-3" key={index}>
+          <ol className="mb-5 list-decimal ml-5 -mt-3 font-mono" key={index}>
             {modifiedText.map((item: any, i: any) => (
               <li key={i}>{item}</li>
             ))}
@@ -67,7 +66,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "bulleted-list":
         return (
-          <ul className="list-disc mb-5 ml-5 -mt-3 text-md font-medium" key={index}>
+          <ul className="list-disc mb-5 ml-5 -mt-3 text-md font-medium font-mono" key={index}>
             {modifiedText.map((item: any, i: any) => (
               <li key={i}>{item}</li>
             ))}
@@ -93,7 +92,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-three":
         return (
-          <h3 key={index} className="text-xl font-semibold mb-4">
+          <h3 key={index} className="text-xl font-semibold mb-4 font-mono">
             {modifiedText.map((item: any, i: any) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -101,7 +100,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "paragraph":
         return (
-          <p key={index} className="mb-4 text-lg font-medium tracking-wide leading-6">
+          <p key={index} className="mb-4 text-lg font-medium font-mono">
             {modifiedText.map((item: any, i: any) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -109,7 +108,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-four":
         return (
-          <h4 key={index} className="text-2xl font-semibold mb-4">
+          <h4 key={index} className="text-2xl font-semibold mb-4 font-mono">
             {modifiedText.map((item: any, i: any) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -117,7 +116,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-five":
         return (
-          <h5 key={index} className="text-md text-2xl font-semibold mb-4">
+          <h5 key={index} className="text-md text-2xl font-semibold mb-4 font-mono">
             {modifiedText.map((item: any, i: number) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -125,7 +124,7 @@ const Post: NextPage<Props> = ({ post }) => {
         );
       case "heading-six":
         return (
-          <h6 key={index} className="text-md text-xl font-semibold mb-4">
+          <h6 key={index} className="text-md text-xl font-semibold mb-4 font-mono">
             {modifiedText.map((item: any, i: number) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -152,14 +151,14 @@ const Post: NextPage<Props> = ({ post }) => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto my-5 px-5">
+    <div className="max-w-3xl mx-auto my-5 px-5">
       <Head>
         <title>{post.title}</title>
         <link rel="icon" href="/logo_photo.jpg" />
       </Head>
       <div className="flex items-center space-x-4 my-2">
         <img
-          className="w-10 h-10 md:w-20 md:h-20 rounded-full"
+          className="w-10 h-10 rounded-full"
           src={post.author.picture.url}
           alt={post.author.name}
         />
@@ -172,7 +171,7 @@ const Post: NextPage<Props> = ({ post }) => {
         </div>
       </div>
       <div className="mb-20">
-        <h3 className="font-bold text-3xl mb-2">{post.title}</h3>
+        <h3 className="font-bold text-3xl mb-2 font-mono">{post.title}</h3>
         <div className="w-2/3 h-2/3 m-3 mx-auto">
           <img src={post.coverImage.url} alt="image" />
         </div>

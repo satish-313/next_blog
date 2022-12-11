@@ -10,7 +10,7 @@ const Layout: NextPage<Props> = ({ children }) => {
       <Header />
       {children}
     </>
-  );
+  ); 
 };
 
 export default Layout;

@@ -11,14 +11,14 @@ interface Props {
 
 const Home: NextPage<Props> = ({ posts, categories }) => {
   return (
-    <div className="max-w-6xl mx-auto bg-white">
+    <div className="max-w-5xl mx-auto bg-white">
       <Head>
         <title>SenoCode - for learning</title>
         <link rel="icon" href="/logo_photo.jpg" />
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-5 p-5">
         <div className="lg:col-span-1 col-span-1 lg:order-last">
-          <div className="lg:sticky lg:relative lg:top-20">
+          <div className="lg:sticky lg:top-20">
             <p className="font-semibold text-gray-700 text-xs">
               DISCOVER MORE OF WHAT MATTERS TO YOU
             </p>
@@ -34,7 +34,7 @@ const Home: NextPage<Props> = ({ posts, categories }) => {
     </div>
   );
 };
-
+// lg:sticky lg:relative lg:top-20
 export default Home;
 
 export const getServerSideProps = async () => {

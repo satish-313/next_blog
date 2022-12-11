@@ -24,8 +24,8 @@ const Posts: NextPage<Props> = ({ post }) => {
         </div>
         <Link href={`/post/${post.slug}`}>
           <div className="my-2 cursor-pointer ">
-            <p className="font-semibold text-sm md:text-xl">{post.title}</p>
-            <p className="hidden md:block text-gray-500">{post.excerpt}</p>
+            <p className="font-medium text-sm md:text-xl font-mono">{post.title}</p>
+            <p className="hidden md:block text-gray-500 font-mono">{post.excerpt}</p>
           </div>
         </Link>
         <div className="flex m-2 space-x-2">
@@ -43,7 +43,7 @@ const Posts: NextPage<Props> = ({ post }) => {
       </div>
       <div className="col-span-1 md:w-36 md:h-36 self-center justify-self-center">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded"
           src={post.coverImage.url}
           alt="image"
         />
