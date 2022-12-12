@@ -33,8 +33,33 @@ pre {
   border-radius: 1rem;
   overflow-x: scroll;
 }
- 
+
 pre code {
   font-size: 1rem;
 }
 
+.sidebar-open {
+  animation: open-sidebar 800ms ease-in-out 0s 1;
+}
+
+.sidebar-close {
+  animation: close-sidebar 800ms ease-in-out 0s 1;
+}
+
+@keyframes open-sidebar {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes close-sidebar {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

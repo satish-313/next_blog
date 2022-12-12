@@ -7,11 +7,19 @@ interface Props {}
 
 const Header: NextPage<Props> = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [closing, setClosing] = useState(false);
   const navBg = useRef(null);
+
+  const closeSidebar = async () => {
+    setClosing(true)
+    await new Promise((r) => setTimeout(r, 700));
+    setShowSidebar(!showSidebar);
+    setClosing(false)
+  };
 
   const closeNavBg = (e: MouseEvent) => {
     if (navBg.current === e.target) {
-      setShowSidebar(!showSidebar);
+      closeSidebar()
     }
   };
 
@@ -43,11 +51,15 @@ const Header: NextPage<Props> = () => {
             onClick={(e) => closeNavBg(e)}
             className="md:hidden fixed inset-0 z-10"
           >
-            <div className="absolute top-0 right-0 bg-pink-600 min-h-screen">
+            <div
+              className={`absolute top-0 right-0 bg-pink-500 min-h-[70%] rounded-l-lg sidebar-open ${
+                closing ? "sidebar-close" : ""
+              }`}
+            >
               <BiX
                 className="cursor-pointer fixed right-5 top-5"
-                onClick={() => setShowSidebar(!showSidebar)}
-                color="white"
+                onClick={() => closeSidebar()}
+                color="black"
                 size={25}
               />
               <div className="px-14 mt-14 mb-8">
